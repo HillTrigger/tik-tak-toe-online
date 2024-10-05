@@ -1,3 +1,5 @@
+import { Game } from "../components/game/game";
+
 export default function HomePage() {
-  return <div>Hello world!</div>;
+  return <Game />;
 }
