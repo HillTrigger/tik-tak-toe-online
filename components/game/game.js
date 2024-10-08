@@ -1,5 +1,4 @@
 import { useGameState } from "./useGameState";
-import styles from "./game.module.css";
 import { GameCell } from "./gameCell";
 import { GameInfo } from "./gameInfo";
 
@@ -14,13 +13,13 @@ export function Game() {
   } = useGameState();
 
   return (
-    <div className={styles["game"]}>
+    <div className="flex flex-col items-center w-40 my-24 mx-auto pt-px pl-px mb-2 border border-black border-solid">
       <GameInfo
         cells={cells}
         winnerSequence={winnerSequence}
         currentStep={currentStep}
       />
-      <div className={styles["game-field"]}>
+      <div className="grid grid-cols-[repeat(3,30px)] grid-rows-[repeat(3,30px)]">
         {
           //проходим по массиву cells для создания нового массива, реакт добавляет все части массива на страницу по порядку, поэтому так можно сформировать список
           cells.map((symbol, index) => {
@@ -35,7 +34,10 @@ export function Game() {
           })
         }
       </div>
-      <button className={styles["game-btn"]} onClick={clearGame}>
+      <button
+        className="border border-gray-500 mt-3 rounded-lg px-1"
+        onClick={clearGame}
+      >
         Очистить
       </button>
     </div>
