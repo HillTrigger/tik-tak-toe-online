@@ -1,4 +1,4 @@
-import { GameSymbol } from "./gameSymbol";
+import { GameSymbol } from "./GameSymbol";
 
 export function GameInfo({ cells, winnerSequence, currentStep }) {
   if (!cells.includes(null) && !winnerSequence) {

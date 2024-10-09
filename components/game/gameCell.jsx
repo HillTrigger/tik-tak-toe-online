@@ -1,4 +1,4 @@
-import { GameSymbol } from "./gameSymbol";
+import { GameSymbol } from "./GameSymbol";
 import clsx from "clsx";
 
 export function GameCell({ isWinner, onClick, symbol, index }) {
