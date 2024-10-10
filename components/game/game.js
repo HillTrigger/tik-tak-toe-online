@@ -2,6 +2,7 @@ import { useGameState } from "./useGameState";
 import { GameCell } from "./GameCell";
 import { GameInfo } from "./GameInfo";
 import { ResetButton } from "./resetButton";
+import { GameGrid } from "./GameGrid";
 
 export function Game() {
   const { cells, currentStep, winnerSequence, handleClick, clearGame } =
