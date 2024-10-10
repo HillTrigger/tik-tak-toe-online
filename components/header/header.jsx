@@ -4,7 +4,7 @@ import avatar from "./avatar.jpeg";
 
 export default function Header() {
   return (
-    <div className="flex items-center bg-white px-8 py-6">
+    <div className="flex items-center bg-white px-8 py-6 shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
       <Image src={logoSvg} alt="logo" />
       <div className="w-px bg-slate-200 h-7 mx-6" />
       <button className="text-2xl text-white bg-teal-600 transition-colors rounded-lg leading-tight px-12 py-2 hover:bg-teal-500">
