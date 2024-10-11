@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logoSvg from "./logo.svg";
-import avatar from "./avatar.jpeg";
+import Profile from "../profile";
 
 export default function Header() {
   return (
@@ -10,18 +10,8 @@ export default function Header() {
       <button className="text-2xl text-white bg-teal-600 transition-colors rounded-lg leading-tight px-12 py-2 hover:bg-teal-500">
         Играть
       </button>
-      <button className="flex gap-2 ml-auto items-center text-teal-600 hover:text-teal-500">
-        <Image
-          src={avatar}
-          alt="avatar"
-          width={48}
-          height={48}
-          className="rounded-full"
-        />
-        <div className="text-left leading-tight">
-          <div className="text-lg">Paromovevg</div>
-          <div className="text-slate-400 text-xs">Рейтинг: 1230</div>
-        </div>
+      <button>
+        <Profile name={"Paromovevg"} rating={"1230"} />
         <svg
           width="13"
           height="7"
