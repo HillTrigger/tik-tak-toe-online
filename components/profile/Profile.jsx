@@ -1,8 +1,10 @@
 import Image from "next/image";
 import avatar from "./man.svg";
-export function Profile({ imageSrc, name, rating, children }) {
+import clsx from "clsx";
+
+export function Profile({ imageSrc, name, rating, className, children }) {
   return (
-    <div className="flex gap-2 items-center relative">
+    <div className={clsx(className, "flex gap-2 items-center relative")}>
       <Image
         src={imageSrc || avatar}
         alt="avatar"
