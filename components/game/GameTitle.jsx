@@ -3,7 +3,8 @@ import { LeftArrow } from "./icons/LeftArrow";
 import { PeopleSvg } from "./icons/peopleSvg";
 import { StarSvg } from "./icons/starSvg";
 import clsx from "clsx";
-export default function GameTitle({ className }) {
+
+export function GameTitle({ className }) {
   return (
     <div className={clsx(className, "")}>
       <div className="flex gap-2 items-center text-teal-600">
