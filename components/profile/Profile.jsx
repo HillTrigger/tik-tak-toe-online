@@ -14,7 +14,7 @@ export function Profile({ imageSrc, name, rating, className, children }) {
       />
       {children}
       <div className="text-left leading-tight">
-        <div className="text-lg">{name}</div>
+        <div className="text-lg text-teal-600">{name}</div>
         <div className="text-slate-400 text-xs">Рейтинг: {rating}</div>
       </div>
     </div>

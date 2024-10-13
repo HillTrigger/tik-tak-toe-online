@@ -1,8 +1,21 @@
-export function Cross() {
+import clsx from "clsx";
+
+/**
+ * @param {{
+ * size: 'lg',
+ * }} props
+ */
+
+export function Cross({ size }) {
+  const razmer = clsx(
+    {
+      lg: 20,
+    }[size],
+  );
   return (
     <svg
-      width="12"
-      height="12"
+      width={razmer || 12}
+      height={razmer || 12}
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

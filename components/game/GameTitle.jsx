@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 export function GameTitle({ className }) {
   return (
-    <div className={clsx(className, "")}>
+    <div className={clsx(className, "text-nowrap max-w-[304px]")}>
       <div className="flex gap-2 items-center text-teal-600">
         <LeftArrow />
         На главную

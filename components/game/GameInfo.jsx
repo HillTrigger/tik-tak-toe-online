@@ -3,10 +3,16 @@ import { Profile } from "../profile";
 import { Cross } from "./icons/Cross";
 import { Nought } from "./icons/Nought";
 import avatar from "./avatar.jpeg";
+import clsx from "clsx";
 
-export function GameInfo() {
+export function GameInfo({ className }) {
   return (
-    <div className="bg-slate-50 rounded-lg shadow px-8 py-4 flex items-center justify-between">
+    <div
+      className={clsx(
+        className,
+        "bg-white rounded-lg shadow px-8 py-4 flex items-center justify-between",
+      )}
+    >
       <div className="relative flex gap-3 items-center">
         <Profile
           className="w-[180px]"
