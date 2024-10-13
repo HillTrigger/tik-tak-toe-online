@@ -19,7 +19,6 @@ export function GameInfo() {
           </div>
         </Profile>
         <div className="h-6 w-px bg-slate-200" />
-
         <span className="flex text-lg font-semibold">01:08</span>
       </div>
       <div className="relative flex gap-3 items-center">
