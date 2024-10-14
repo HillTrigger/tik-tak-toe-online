@@ -50,7 +50,9 @@ export function GameField({ className }) {
                 handleClick(i);
               }}
               key={i}
-            ></GameCell>
+            >
+              {symbol && <GameSymbol symbol={symbol ?? ""} size="lg" />}
+            </GameCell>
           );
         })}
       </GameGrid>

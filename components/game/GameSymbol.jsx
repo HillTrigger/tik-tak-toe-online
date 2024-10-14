@@ -12,12 +12,13 @@ import { Triangle } from "./icons/triangle";
  */
 
 export function GameSymbol({ symbol, size }) {
-  const Icon = {
-    [GAME_SYMBOLS.CROSS]: Cross,
-    [GAME_SYMBOLS.NOUGHT]: Nought,
-    [GAME_SYMBOLS.TRIANGLE]: Triangle,
-    [GAME_SYMBOLS.SQUARE]: Square,
-  }[symbol];
+  const Icon =
+    {
+      [GAME_SYMBOLS.CROSS]: Cross,
+      [GAME_SYMBOLS.NOUGHT]: Nought,
+      [GAME_SYMBOLS.TRIANGLE]: Triangle,
+      [GAME_SYMBOLS.SQUARE]: Square,
+    }[symbol] ?? Cross;
 
   return <Icon size={size} />;
 }
