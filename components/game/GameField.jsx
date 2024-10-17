@@ -1,29 +1,10 @@
 import clsx from "clsx";
 import { UiButton } from "../uikit/ui-button";
-import { useState } from "react";
-import { GAME_SYMBOLS } from "./constants";
 import { GameSymbol } from "./GameSymbol";
-
-const MOVE_ORDER = [
-  GAME_SYMBOLS.CROSS,
-  GAME_SYMBOLS.NOUGHT,
-  GAME_SYMBOLS.TRIANGLE,
-  GAME_SYMBOLS.SQUARE,
-];
-
-function getNextMove(currentMove) {
-  const nextMoveIndex = MOVE_ORDER.indexOf(currentMove) + 1;
-  return MOVE_ORDER[nextMoveIndex] ?? MOVE_ORDER[0];
-}
+import { useGameState } from "./useGameState";
 
 export function GameField({ className }) {
-  const [cells, setCells] = useState(() => new Array(19 * 19).fill(null));
-  const [currentMove, setCurrentMove] = useState(GAME_SYMBOLS.CROSS);
-  const nextMove = getNextMove(currentMove);
-
-  const handleClick = (i) => {
-    setCurrentMove((lastCurrentMove) => getNextMove(lastCurrentMove));
-  };
+  const { cells, currentMove, nextMove, handleClick } = useGameState();
 
   const actions = (
     <>
@@ -43,13 +24,13 @@ export function GameField({ className }) {
         nextMove={nextMove}
       />
       <GameGrid>
-        {cells.map((symbol, i) => {
+        {cells.map((symbol, index) => {
           return (
             <GameCell
-              onClick={(i) => {
-                handleClick(i);
+              onClick={() => {
+                handleClick(index);
               }}
-              key={i}
+              key={index}
             >
               {symbol && <GameSymbol symbol={symbol ?? ""} size="lg" />}
             </GameCell>
