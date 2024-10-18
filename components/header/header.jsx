@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logoSvg from "./logo.svg";
 import { Profile } from "../profile";
-import avatar from "../game/avatar.jpeg"; // Импорт аватара
+import avatar from "../game/images/avatar.jpeg"; // Импорт аватара
 import DownArrow from "./DownArrow";
 import { UiButton } from "../uikit/ui-button";
 

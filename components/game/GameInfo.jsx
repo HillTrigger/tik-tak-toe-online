@@ -1,58 +1,83 @@
 import { Profile } from "../profile";
-import { Cross } from "./icons/Cross";
-import { Nought } from "./icons/Nought";
-import avatar from "./avatar.jpeg";
+import avatar from "./images/avatar.jpeg";
+import avatar2 from "./images/avatar2.jpg";
+import avatar3 from "./images/avatar3.jpg";
+import avatar4 from "./images/avatar4.jpg";
 import clsx from "clsx";
+import { GAME_SYMBOLS } from "./constants";
+import { GameSymbol } from "./GameSymbol";
 
-export function GameInfo({ className }) {
+const players = [
+  {
+    id: 1,
+    name: "Paromovevg",
+    rating: "1230",
+    avatar: avatar,
+    symbol: GAME_SYMBOLS.CROSS,
+  },
+  {
+    id: 2,
+    name: "VereIntedinglapotur",
+    rating: "850",
+    avatar: avatar2,
+    symbol: GAME_SYMBOLS.NOUGHT,
+  },
+  {
+    id: 3,
+    name: "Lara",
+    rating: "1400",
+    avatar: avatar3,
+    symbol: GAME_SYMBOLS.TRIANGLE,
+  },
+  {
+    id: 4,
+    name: "Додик",
+    rating: "760",
+    avatar: avatar4,
+    symbol: GAME_SYMBOLS.SQUARE,
+  },
+];
+
+export function GameInfo({ className, playersCount }) {
   return (
     <div
       className={clsx(
         className,
-        "bg-white rounded-lg shadow px-8 py-4 flex items-center justify-between",
+        "bg-white rounded-lg shadow px-8 py-4 grid grid-cols-2 gap-x-10 gap-y-3",
       )}
     >
-      <PlayerInfo avatar={avatar} name="Paromovevg" rating="1230" />
-      <PlayerInfo avatar={avatar} name="Hill" rating="850" right />
+      {players.slice(0, playersCount).map((player, index) => {
+        return (
+          <PlayerInfo
+            key={player.id}
+            playerInfo={player}
+            isRight={index % 2 === 1}
+          />
+        );
+      })}
     </div>
   );
 }
 
-function PlayerInfo({ avatar, name, rating, right }) {
-  if (right) {
-    return (
-      <div className="relative flex gap-3 items-center">
-        <span className="flex text-orange-600 text-lg font-semibold">
-          00:08
-        </span>
-        <div className="h-6 w-px bg-slate-200" />
-        <Profile
-          className="w-[180px]"
-          imageSrc={avatar}
-          name={name}
-          rating={rating}
-        >
-          <div className="w-5 h-5 rounded-full bg-white top-0 left-0 absolute shadow flex items-center justify-center">
-            <Nought />
-          </div>
-        </Profile>
-      </div>
-    );
-  }
+function PlayerInfo({ playerInfo, isRight }) {
   return (
     <div className="relative flex gap-3 items-center">
       <Profile
-        className="w-[180px]"
-        imageSrc={avatar}
-        name={name}
-        rating={rating}
+        className={clsx("w-[180px]", isRight && "order-3")}
+        imageSrc={playerInfo.avatar}
+        name={playerInfo.name}
+        rating={playerInfo.rating}
       >
         <div className="w-5 h-5 rounded-full bg-white top-0 left-0 absolute shadow flex items-center justify-center">
-          <Cross />
+          <GameSymbol symbol={playerInfo.symbol} />
         </div>
       </Profile>
       <div className="h-6 w-px bg-slate-200" />
-      <span className="flex text-lg font-semibold">01:08</span>
+      <span
+        className={clsx("flex text-lg font-semibold", isRight && "-order-1")}
+      >
+        01:08
+      </span>
     </div>
   );
 }

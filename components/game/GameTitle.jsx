@@ -4,7 +4,7 @@ import { PeopleSvg } from "./icons/peopleSvg";
 import { StarSvg } from "./icons/starSvg";
 import clsx from "clsx";
 
-export function GameTitle({ className }) {
+export function GameTitle({ className, playersCount }) {
   return (
     <div className={clsx(className, "text-nowrap max-w-[304px]")}>
       <div className="flex gap-2 items-center text-teal-600">
@@ -15,7 +15,8 @@ export function GameTitle({ className }) {
       <div className="flex items-center text-xs gap-3 text-slate-400">
         <StarSvg />
         <div className="flex items-center gap-1">
-          <PeopleSvg />2
+          <PeopleSvg />
+          {playersCount}
         </div>
         <div className="flex items-center gap-1">
           <ClockSvg />1 мин на ход

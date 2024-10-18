@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { GAME_SYMBOLS, MOVE_ORDER } from "./constants";
 
-export function useGameState() {
+export function useGameState({ playersCount }) {
   function getNextMove(currentMove) {
-    const nextMoveIndex = MOVE_ORDER.indexOf(currentMove) + 1;
-    return MOVE_ORDER[nextMoveIndex] ?? MOVE_ORDER[0];
+    const slicedMoveOrder = MOVE_ORDER.slice(0, playersCount);
+    const nextMoveIndex = slicedMoveOrder.indexOf(currentMove) + 1;
+    return slicedMoveOrder[nextMoveIndex] ?? slicedMoveOrder[0];
   }
 
   const [{ cells, currentMove }, setGameState] = useState({
@@ -29,5 +30,5 @@ export function useGameState() {
     });
   };
 
-  return { cells, currentMove, nextMove, handleClick };
+  return { cells, currentMove, nextMove, handleClick, playersCount };
 }

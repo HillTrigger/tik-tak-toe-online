@@ -1,8 +1,8 @@
 export const GAME_SYMBOLS = {
-  CROSS: "cross",
-  NOUGHT: "Nought",
-  TRIANGLE: "triangle",
-  SQUARE: "square",
+  CROSS: "CROSS",
+  NOUGHT: "NOUGHT",
+  TRIANGLE: "TRIANGLE",
+  SQUARE: "SQUARE",
 };
 
 export const MOVE_ORDER = [
