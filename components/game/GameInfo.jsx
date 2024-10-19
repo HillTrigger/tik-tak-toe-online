@@ -6,6 +6,7 @@ import avatar4 from "./images/avatar4.jpg";
 import clsx from "clsx";
 import { GAME_SYMBOLS } from "./constants";
 import { GameSymbol } from "./GameSymbol";
+import { useEffect, useState } from "react";
 
 const players = [
   {
@@ -38,7 +39,7 @@ const players = [
   },
 ];
 
-export function GameInfo({ className, playersCount }) {
+export function GameInfo({ className, playersCount, currentMove }) {
   return (
     <div
       className={clsx(
@@ -52,6 +53,7 @@ export function GameInfo({ className, playersCount }) {
             key={player.id}
             playerInfo={player}
             isRight={index % 2 === 1}
+            isTimerRunning={currentMove === player.symbol}
           />
         );
       })}
@@ -59,7 +61,31 @@ export function GameInfo({ className, playersCount }) {
   );
 }
 
-function PlayerInfo({ playerInfo, isRight }) {
+function PlayerInfo({ playerInfo, isRight, isTimerRunning }) {
+  const [seconds, setSeconds] = useState(30);
+  const stringMinuts = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const stringSeconds = String(seconds % 60).padStart(2, "0");
+  const isDanger = seconds <= 10;
+
+  useEffect(() => {
+    if (isTimerRunning) {
+      const interval = setInterval(() => {
+        setSeconds((s) => Math.max(s - 1, 0));
+      }, 1000);
+      return () => {
+        clearInterval(interval);
+        setSeconds(30);
+      };
+    }
+  }, [isTimerRunning]);
+
+  function getTimerColor() {
+    if (isTimerRunning) {
+      return isDanger && "text-orange-600";
+    }
+    return "text-slate-200";
+  }
+
   return (
     <div className="relative flex gap-3 items-center">
       <Profile
@@ -74,9 +100,13 @@ function PlayerInfo({ playerInfo, isRight }) {
       </Profile>
       <div className="h-6 w-px bg-slate-200" />
       <span
-        className={clsx("flex text-lg font-semibold", isRight && "-order-1")}
+        className={clsx(
+          "flex text-lg font-semibold w-[60px]",
+          isRight && "-order-1",
+          getTimerColor(),
+        )}
       >
-        01:08
+        {stringMinuts}:{stringSeconds}
       </span>
     </div>
   );
