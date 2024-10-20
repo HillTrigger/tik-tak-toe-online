@@ -8,10 +8,11 @@ import {
 import { Header } from "../components/header";
 
 export default function HomePage() {
-  const [playersCount] = useState(4);
-  const { cells, currentMove, nextMove, handleClick } = useGameState({
-    playersCount,
-  });
+  const [playersCount] = useState(2);
+  const { cells, currentMove, nextMove, handleClick, winnerSequence } =
+    useGameState({
+      playersCount,
+    });
   return (
     <>
       <div className="bg-slate-50 min-h-screen">
@@ -30,6 +31,7 @@ export default function HomePage() {
             nextMove={nextMove}
             handleClick={handleClick}
             className={"mt-6"}
+            winnerSequence={winnerSequence}
           />
         </main>
       </div>
