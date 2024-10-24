@@ -39,7 +39,7 @@ const players = [
   },
 ];
 
-export function GameInfo({ className, playersCount, currentMove }) {
+export function GameInfo({ className, playersCount, currentMove, isWinner }) {
   return (
     <div
       className={clsx(
@@ -53,7 +53,7 @@ export function GameInfo({ className, playersCount, currentMove }) {
             key={player.id}
             playerInfo={player}
             isRight={index % 2 === 1}
-            isTimerRunning={currentMove === player.symbol}
+            isTimerRunning={currentMove === player.symbol && !isWinner}
           />
         );
       })}

@@ -23,6 +23,7 @@ export default function HomePage() {
             playersCount={playersCount}
             currentMove={currentMove}
             className={"mt-4"}
+            isWinner={!!winnerSequence}
           />
           <GameField
             playersCount={playersCount}
