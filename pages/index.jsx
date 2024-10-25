@@ -16,6 +16,7 @@ export default function HomePage() {
     handleClick,
     winnerSequence,
     handlePlayerTimeOver,
+    winnerSymbol,
   } = useGameState({
     playersCount,
   });
@@ -30,7 +31,7 @@ export default function HomePage() {
             playersCount={playersCount}
             currentMove={currentMove}
             className={"mt-4"}
-            isWinner={!!winnerSequence}
+            isWinner={!!winnerSymbol}
             onPlayerTimeOver={handlePlayerTimeOver}
           />
           <GameField
@@ -41,6 +42,7 @@ export default function HomePage() {
             handleClick={handleClick}
             className={"mt-6"}
             winnerSequence={winnerSequence}
+            winnerSymbol={winnerSymbol}
           />
         </main>
       </div>
