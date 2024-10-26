@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { UiModal } from "../components/uikit/UiModal";
 import {
   GameInfo,
   GameTitle,
@@ -34,6 +35,11 @@ export default function HomePage() {
             isWinner={!!winnerSymbol}
             onPlayerTimeOver={handlePlayerTimeOver}
           />
+          <UiModal>
+            <UiModal.Header>Header</UiModal.Header>
+            <UiModal.Body>Body</UiModal.Body>
+            <UiModal.Footer>Footer</UiModal.Footer>
+          </UiModal>
           <GameField
             playersCount={playersCount}
             cells={cells}

@@ -3,7 +3,7 @@ import logoSvg from "./logo.svg";
 import { Profile } from "../profile";
 import avatar from "../game/images/avatar.jpeg"; // Импорт аватара
 import DownArrow from "./DownArrow";
-import { UiButton } from "../uikit/ui-button";
+import { UiButton } from "../uikit/UiButton";
 
 export function Header() {
   return (
