@@ -1,24 +1,41 @@
 import clsx from "clsx";
+import { createPortal } from "react-dom";
 
 /**
  *
  * @param {{
  *   width: 'md' | 'full',
+ *   className: string,
+ *   isOpen: boolean,
+ *   onClose: function,
  * }} props
  * @returns
  */
 
-export function UiModal({ width = "md", className, children }) {
-  return (
+export function UiModal({
+  className,
+  children,
+  width = "md",
+  isOpen,
+  onClose,
+}) {
+  if (!isOpen) return null;
+
+  const handleClick = (e) => {
+    if (e.currentTarget === e.target) onClose();
+  };
+
+  const modal = (
     <div
+      onClick={handleClick}
       className={clsx(
-        "fixed inset-0 bg-slate-900/60 backdrop-blur-sm pt-10 px-8",
+        "fixed inset-0 bg-slate-900/60 backdrop-blur-sm pt-10 px-8 text-sm overflow-y-auto",
         className,
       )}
     >
       <div
         className={clsx(
-          "min-h-80 bg-white mx-auto rounded-md relative flex flex-col",
+          "min-h-80 bg-white mx-auto rounded-md relative flex flex-col p-6 mb-8",
           {
             md: "max-w-[640px] w-full",
             full: "",
@@ -27,6 +44,7 @@ export function UiModal({ width = "md", className, children }) {
       >
         {children}
         <button
+          onClick={onClose}
           className="
           p-2 rounded
           absolute top-0 left-[calc(100%+0.75rem)]
@@ -37,21 +55,21 @@ export function UiModal({ width = "md", className, children }) {
       </div>
     </div>
   );
+
+  return createPortal(modal, document.getElementById("modals"));
 }
 
 UiModal.Header = function UiModalHeader({ className, children }) {
-  return (
-    <div className={clsx(className, "px-6 pt-6 pb-4 text-2xl")}>{children}</div>
-  );
+  return <div className={clsx(className, " text-2xl pb-4")}>{children}</div>;
 };
 
 UiModal.Body = function UiModalBody({ className, children }) {
-  return <div className={clsx(className, "px-6")}>{children}</div>;
+  return <div className={clsx(className, "")}>{children}</div>;
 };
 
 UiModal.Footer = function UiModalFooter({ className, children }) {
   return (
-    <div className={clsx(className, "mt-auto px-6 flex gap-4 justify-end")}>
+    <div className={clsx(className, "mt-auto flex gap-4 justify-end")}>
       {children}
     </div>
   );

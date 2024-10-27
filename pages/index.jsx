@@ -7,6 +7,7 @@ import {
   useGameState,
 } from "../components/game";
 import { Header } from "../components/header";
+import { UiButton } from "../components/uikit/UiButton";
 
 export default function HomePage() {
   const [playersCount] = useState(4);
@@ -35,10 +36,21 @@ export default function HomePage() {
             isWinner={!!winnerSymbol}
             onPlayerTimeOver={handlePlayerTimeOver}
           />
-          <UiModal>
-            <UiModal.Header>Header</UiModal.Header>
-            <UiModal.Body>Body</UiModal.Body>
-            <UiModal.Footer>Footer</UiModal.Footer>
+          <UiModal isOpen={winnerSymbol} onClose={() => console.log("close")}>
+            <UiModal.Header>Игра завершена</UiModal.Header>
+            <UiModal.Body>
+              <>
+                Победитель: <span className="text-teal-600">Paromovevg</span>
+              </>
+            </UiModal.Body>
+            <UiModal.Footer>
+              <UiButton size="mg" color="outline">
+                Вернуться
+              </UiButton>
+              <UiButton size="mg" color="primary">
+                Играть снова
+              </UiButton>
+            </UiModal.Footer>
           </UiModal>
           <GameField
             playersCount={playersCount}
