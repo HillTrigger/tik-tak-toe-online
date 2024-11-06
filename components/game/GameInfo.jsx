@@ -1,43 +1,9 @@
 import { Profile } from "../profile";
-import avatar from "./images/avatar.jpeg";
-import avatar2 from "./images/avatar2.jpg";
-import avatar3 from "./images/avatar3.jpg";
-import avatar4 from "./images/avatar4.jpg";
+
 import clsx from "clsx";
 import { GAME_SYMBOLS } from "./constants";
 import { GameSymbol } from "./GameSymbol";
 import { useEffect, useState } from "react";
-
-const players = [
-  {
-    id: 1,
-    name: "Paromovevg",
-    rating: "1230",
-    avatar: avatar,
-    symbol: GAME_SYMBOLS.CROSS,
-  },
-  {
-    id: 2,
-    name: "VereIntedinglapotur",
-    rating: "850",
-    avatar: avatar2,
-    symbol: GAME_SYMBOLS.NOUGHT,
-  },
-  {
-    id: 3,
-    name: "Lara",
-    rating: "1400",
-    avatar: avatar3,
-    symbol: GAME_SYMBOLS.TRIANGLE,
-  },
-  {
-    id: 4,
-    name: "Додик",
-    rating: "760",
-    avatar: avatar4,
-    symbol: GAME_SYMBOLS.SQUARE,
-  },
-];
 
 export function GameInfo({
   className,
