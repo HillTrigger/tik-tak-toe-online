@@ -1,6 +1,10 @@
 import { MOVE_ORDER } from "../constants";
 
-export function getNextMove(currentMove, PLAYERS_COUNT, playersTimeOver) {
+// state.currentMove,
+//           state.PLAYERS_COUNT,
+//           state.playersTimeOver,
+export function getNextMove({ currentMove, PLAYERS_COUNT, playersTimeOver }) {
+  // const {  } = state;
   const slicedMoveOrder = MOVE_ORDER.slice(0, PLAYERS_COUNT).filter(
     (symbol) => !playersTimeOver.includes(symbol),
   );
