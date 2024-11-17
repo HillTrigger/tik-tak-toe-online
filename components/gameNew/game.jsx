@@ -17,15 +17,20 @@ import { useReducer } from "react";
 import { computeWinner } from "./model/computeWinner.js";
 import { getNextMove } from "./model/getNextMove.js";
 import { computePlayerTimer } from "./model/computePlayerTimer.js";
+import { useInterval } from "../lib/timers.js";
 
 const PLAYERS_COUNT = 2;
 
 export function Game() {
   const [gameState, dispatch] = useReducer(
     gameStateReducer,
-    { PLAYERS_COUNT, defaultTimer: 60000, currentMoveStart: Date.now() },
+    { PLAYERS_COUNT, defaultTimer: 10000, currentMoveStart: Date.now() },
     initGameState,
   );
+
+  useInterval(1000, gameState.currentMoveStart, () => {
+    dispatch({ type: GAME_STATE_ACTIONS.TICK, now: Date.now() });
+  });
 
   const winnerSequence = computeWinner(gameState.cells);
   const nextMove = getNextMove(gameState);

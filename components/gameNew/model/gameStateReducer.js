@@ -3,11 +3,12 @@ import { getNextMove } from "./getNextMove";
 
 export const GAME_STATE_ACTIONS = {
   CELL_CLICK: "cell-click",
+  TICK: "tick",
 };
 
 export function gameStateReducer(state, action) {
   switch (action.type) {
-    case GAME_STATE_ACTIONS.CELL_CLICK:
+    case GAME_STATE_ACTIONS.CELL_CLICK: {
       const { index, now } = action.payload;
 
       if (state.cells[index]) {
@@ -20,6 +21,20 @@ export function gameStateReducer(state, action) {
         currentMove: getNextMove(state),
         cells: updateCell(state, index),
       };
+    }
+
+    case GAME_STATE_ACTIONS.TICK: {
+      const { now } = action;
+      if (!isTimeOver(state, now)) {
+        return state;
+      }
+      return {
+        ...state,
+        currentMoveStart: now,
+        timers: updateTimers(state, now),
+        currentMove: getNextMove(state),
+      };
+    }
 
     default:
       return state;
@@ -44,8 +59,10 @@ export const initGameState = ({
   }, {}),
 });
 
-function updateCell(state, index) {
-  return state.cells.map((cell, i) => (i === index ? state.currentMove : cell));
+function updateCell(gameState, index) {
+  return gameState.cells.map((cell, i) =>
+    i === index ? gameState.currentMove : cell,
+  );
 }
 
 function updateTimers(gameState, now) {
@@ -55,4 +72,10 @@ function updateTimers(gameState, now) {
     ...gameState.timers,
     [gameState.currentMove]: timer - diff,
   };
+}
+
+function isTimeOver(gameState, now) {
+  let timers = updateTimers(gameState, now);
+  let timer = timers[gameState.currentMove];
+  return timer <= 0;
 }
