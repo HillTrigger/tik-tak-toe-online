@@ -1,5 +1,3 @@
-import { UiButton } from "../../uikit/UiButton";
-
 export function GameLayout({
   BackLink,
   GameTitle,

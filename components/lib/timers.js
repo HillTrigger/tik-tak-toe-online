@@ -24,13 +24,13 @@ export function useInterval(interval, enabled, cb) {
     if (!enabled) {
       return;
     }
+
     const int = setInterval(() => {
+      console.log("Interval");
       cb(Date.now());
     }, interval);
     return () => {
       clearInterval(int);
     };
-    // TODO useCallback
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [interval, enabled]);
+  }, [interval, enabled, cb]);
 }

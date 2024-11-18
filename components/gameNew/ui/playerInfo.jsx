@@ -2,9 +2,9 @@ import Image from "next/image";
 import { GameSymbol } from "./GameSymbol";
 import clsx from "clsx";
 import { useNow } from "../../lib/timers";
+import { memo } from "react";
 
 export function PlayerInfo({
-  className,
   avatar,
   name,
   rating,
@@ -32,7 +32,6 @@ export function PlayerInfo({
     <div className="relative flex gap-3 items-center">
       <div
         className={clsx(
-          className,
           "flex gap-2 items-center relative w-44",
           isRight && "order-3",
         )}
