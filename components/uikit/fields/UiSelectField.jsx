@@ -5,16 +5,12 @@ import { UiSelect } from "./UiSelect";
 /**
  * @param {{
  *   options: Array<{ value: string, label: string }>,
- *   value: string,
- *   onChange: (value: string) => void,
  *   errorText?: string,
  *   helperText?: string,
  *   label?: string,
  *   required?: boolean,
- *   placeholder?: string,
  * }} props
  * @returns {JSX.Element}
- * A form field for a select input, combining UiFieldLabel, UiSelect, and UiFieldMessage.
  */
 export function UiSelectField({
   options,
